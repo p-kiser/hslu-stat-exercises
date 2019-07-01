@@ -1,11 +1,12 @@
 ---
 title: Zusammenfassung STAT
-author: Pascal Kiser
+subtitle: Statistics for Data Science
+author: <pascal.kiser@stud.hslu.ch>
 ---
 
-Zusammenfassung des Vorlesungsskripts HS18 zum Modul "Statistics for Data Science" an der HSLU. Dieses Dokument beinhaltet den zusammengefassten Inhalt des Vorlesungsskripts für das HS 18, der Folien, Übungen und dem Interwebz.
-
 # Allgemeines
+
+Zusammenfassung des Vorlesungsskripts FS19 zum Modul 'Statistics for Data Science' an der HSLU. Dieses Dokument beinhaltet den zusammengefassten Inhalt des Vorlesungsskripts für das FS 19, der Folien und Übungen.
 
 ## Konventionen bei der Klammernotation
 
@@ -18,21 +19,21 @@ Der Wertebereich $(a,b]$ beinhaltet also alle Punkte $x > a$ und $x <= b$.
 
 ## Darstellung von Messwerten
 
-Relevant für die Darstellung von Messwerten sind ivor allen die _Nachkommastellen_ und die _signifikanten Stellen_. Als signifikante Stellen bezeichnet man alle Stellen von der ersten, sich von Null unterscheidenten Stelle bis zur Rundungstelle. Als Nachkommastellen bezeichet man die Stellen rechts des Kommas.
+Relevant für die Darstellung von Messwerten sind vor allen die _Nachkommastellen_ und die _signifikanten Stellen_. Als signifikante Stellen bezeichnet man alle Stellen von der ersten, sich von Null unterscheidenden Stelle bis zur Rundungstelle. Als Nachkommastellen bezeichet man die Stellen rechts des Kommas.
 
 | Zahl              | Signifikante Stellen  | Nachkommastellen  |
-|---                |                    ---|                ---|
+|                ---:|                    ---:|                ---:|
 | $23.45$           |                     4 |                 2 |
-|$0.0023$           |                     2 |                 2 |
+| $0.0023$          |                     2 |                 2 |
 | $1.12 \cdot 10^6$ |                     3 |                 2 |
 
 Die beiden _Messzahlen_ $20$ und $20.00$ sind also nicht gleichbedeutend, da sie einen Unterschied in der Messgenauigkeit nahelegen.
 
-Daraus ergeben sich folgende Regeln für das Rechenen mit Messzahlen:
+Daraus ergeben sich folgende Regeln für das Rechnen mit Messzahlen:
 
-* Das Ergebnis einer Addition / Subtraktion hat gleich viele Nachkommastellen wie die Zahl mit den wenigsten Nachkommastellen
-* Das Ergebnis einer Multiplikation / Division hat gleich viele signifikante Stellen, wie die Zahl mit den wenigsten signifikanten Stellen
-* RUndungen sollten möglichst spät im Rechenvorgang gemacht werden. Für Zwischenresultate sollte mindestens eine Stelle mehr als im Endresultat angegeben werden.
+1. Das Ergebnis einer Addition / Subtraktion hat gleich viele Nachkommastellen wie die Zahl mit den wenigsten Nachkommastellen.
+2. Das Ergebnis einer Multiplikation / Division hat gleich viele signifikante Stellen, wie die Zahl mit den wenigsten signifikanten Stellen.
+3. Rundungen sollten möglichst spät im Rechenvorgang gemacht werden. Für Zwischenresultate sollte mindestens eine Stelle mehr als im Endresultat angegeben werden.
 
 # Was ist Statistik
 
@@ -48,9 +49,11 @@ $\rightarrow$ _https://de.wikipedia.org/wiki/Stochastik_
 
 Wüsste man die exakte Masseverteilung, Anfangsposition und -geschwindikeit der Münze sowie die Position und Geschwindigkeit aller Luftmoleküle, könnte man vermutlich mit Hilfe der Mechanik berechnen auf welcher Seite die Münze landen wird.
 
-Da wir nie alle Informationen haben können, treffen wir Annahmen (_die Münze ist fair_) und überprüfen, wie gut diese mit den Beobachtungen nach vielen Münzwürfen zusammenpasst. Mit Stochastik wird also die Plausibilität eines Modelles geprüft.
+Da wir nie alle Informationen haben können, treffen wir Annahmen (_"die Münze ist fair"_) und überprüfen, wie gut diese mit den Beobachtungen nach vielen Münzwürfen zusammenpasst. Mit Stochastik wird also die Plausibilität eines Modelles geprüft.
 
 ## Unterschiede zur Wahrscheinlichkeitsrechnung
+
+Stochastik als Teilgebiet der Mathematik fasst als Oberbegriff die Gebiete Wahrscheinlichkeitsrechnung un d Statistik zusammen.
 
 In der Wahrscheinlichkeitsrechnung ist in der Regel das Modell bekannt, während in der Statistik aufgrund vorhandener Daten versucht wird Rückschlüsse auf die Realität zu ziehen.
 
@@ -82,7 +85,7 @@ Um Datensätze numerisch zusammenzufassen, verwendet man meistens zwei Kenngrös
 
 ### Arithmetisches Mittel
 
-Die bekannteste Grösse für die mittlere Lage ist der Durchschnitt oder das arithmetische Mittel:
+Die bekannteste Grösse für die mittlere Lage ist der _Durchschnitt_ oder das _arithmetische Mittel_:
 
 $$ \bar{x} = \frac{x_1 + x_2 + \ldots + x_n}{n} = \frac{1}{n} \sum_{i=1}^{n}x_i = \bar{x_n}$$
 
@@ -102,7 +105,7 @@ $$ Var(x) = \frac{(x_1 - \bar{x_n})^2 + (x_2 - \bar{x_n})^2 + \ldots + (x_n - \b
 
 $$s_x = \sqrt{Var(x)} = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x_n})^2}$$
 
-Bei der Varianz quadriert man, damit sich positive und negative Werte nicht gegenseitig aufheben können. Die Standardabweichung ist die Wurzel der Varianz.Der Wert der empirischen Varianz hat keine physikalische Bedeutung.
+Bei der Varianz quadriert man, damit sich positive und negative Werte nicht gegenseitig aufheben können. Die Standardabweichung ist die Wurzel der Varianz. Der Wert der empirischen Varianz hat keine physikalische Bedeutung.
 
 Berechung mit Python:
 
@@ -161,7 +164,7 @@ _Quantile_ sind eine Verallgemeinerung des Konzept der Quartile auf jede andere 
 
 $$\frac{1}{2}(x_{\alpha n} + x_{(\alpha n+1)})\text{, falls $\alpha \cdot n$ eine natürliche Zahl ist},$$
 
-$$x_{(k)} \text{ wobei $k$ die Zahl $\alpha \cdot n$ aufgerundet ist, falls $\alpha \cdot n \notin \N$.}$$
+$$x_{(k)} \text{ wobei $k$ die Zahl $\alpha \cdot n$ aufgerundet ist, falls } \alpha \cdot n \notin N.$$
 
 ```python
 # 20%, 40%, 60%, 80% und 100% Quantil
@@ -169,7 +172,7 @@ import numpy as np
 data.quantile(q = np.linspace(start=0.2, stop=1, num=5))
 ```
 
-## Graphische Methoden
+## Graphische Methoden
 
 ### Histogramm
 
@@ -187,7 +190,7 @@ Regeln für das Erstellen eines Histogramms:
 
 $$ k = 1 + \log_{2} n = 1 + 3.3 \log_{10} n \text{ , wobei $n$ die Anzahl Messungen ist.}$$
 
-Histogramm imt Python:
+Histogramm mit Python:
 
 ```python
 import matplotlib.pyplot as plt
@@ -199,7 +202,7 @@ plt.ylabel("Haeufigkeit")
 plt.show()
 ```
 
-Die `plot`-Funktion von `matplotlib` wählt standardmässig 10 Klassen. dies kann mit der Option `bins` geändert werden:
+Die `plot`-Funktion von `matplotlib` wählt standardmässig 10 Klassen. Dies kann mit der Option `bins` geändert werden:
 
 ```python
 data.plot(kind="hist", bins=7, edgecolor="black")
@@ -234,15 +237,15 @@ Mehrere Boxplots gleichzeitig darstellen:
 
 ```python
 methode = DataFrame({
-"methodeA": methodeA,
-"methodeB": methodeB
+    "methodeA": methodeA,
+    "methodeB": methodeB
 })
 methode.plot(kind="box", title="Boxplot von Methode A und B")
 ```
 
 ### Empirische kumulative Verteilungsfunktion
 
-Die _empirische kumulative Verteilungsfunktion_ ist eine weitere graphische Darstellung von Daten. Es handelt sich dabei um eine Treppenfunktion, die wie folgt definert ist:
+Die _empirische kumulative Verteilungsfunktion_ ist eine weitere graphische Darstellung von Daten. Es handelt sich dabei um eine Treppenfunktion, die wie folgt definiert ist:
 
 $$F_n(a) = \frac{1}{n} \text{Anzahl}\{ i \mid x_i \le a\}$$
 
@@ -318,7 +321,7 @@ Besser als durch Betrachung des Streudiagramms ist es aber, den Zusammenhang num
 
 ## Empirische Korrelation
 
-![xkcd correlation](./img/xkcd-correlation.png)
+![relevant xkcd](./img/xkcd-correlation.png)
 
 Für die quantitative Zusammenfassung der linearen Abhängigkeit zweier Grössen ist die _empirische Korrelation_ ($r$ oder $\hat{\rho}$) als Kennzahl am gebräuchlichsten.
 
@@ -326,13 +329,13 @@ $$r = \frac { \sum _ { i = 1 } ^ { n } \left( x _ { i } - \overline { x } \right
 
 Die empirische Korrelation ist eine dimensionslose Zahl zwischen $-1$ und $1$ und hat folgende Eigenschaften:
 
-- Ist $r = 1$, dann liegen die Punkte auf einer Geraden $y = a + bx$ mit $b > 0$
+* Ist $r = 1$, dann liegen die Punkte auf einer Geraden $y = a + bx$ mit $b > 0$
 - Ist $r = -1$, dann liegen die Punkte auf einer Geraden $y = a + bx$ mit $b < 0$
 - Sind $x$ und $y$ unabhängig, dann ist $r = 0$
 
 ```python
 data.corr().iloc[0,1]   # Korrelation
-data.corr()             # Korrelationsmatrix 
+data.corr()             # Korrelationsmatrix
 ```
 
 Verschiedene Streudiagramme mit den jeweiligen Korrelation:
@@ -400,7 +403,6 @@ Fehlen bei einer Messgrösse für bestimmte Beobachtungen Werte, so werden diese
 
 der vorhandenen Werte der entsprechenden Messgrösse ersetzt. Das funktioniert gut, wenn die Werte völlig zufällig fehlen.
 
-
 ```python
 import pandas as pd
 import numpy as np
@@ -418,15 +420,14 @@ imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0, verbose =
 transformed_values = imputer.fit_transform(values)
 df_new = pd.DataFrame(transformed_values, columns=['Age'])
 print(df_new)
+# TODO: Fix code
 ```
 
-> TODO: Fix code
-
-Weiteres API: `fancyimpute.SimpleFill()`
+Weitere API: `fancyimpute.SimpleFill()`
 
 # Modelle für Messdaten
 
-Häufig hat man nicht mit Zähldaten, sondern mit Messdaten zu tun. Diese können grundsätzlich Werte in einem bestimmten Messbereich annehmen und haben eine bestimmte Messgenauigkeit. 
+Häufig hat man nicht mit Zähldaten, sondern mit Messdaten zu tun. Diese können grundsätzlich Werte in einem bestimmten Messbereich annehmen und haben eine bestimmte Messgenauigkeit.
 
 ## Diskrete Wahrscheinlichkeitsverteilung
 
@@ -452,7 +453,7 @@ Zusammenfassend:
 
 * $X$ ist eine Funktion
 * $x$ ist eine konkreter Wert
-* $P(t)$ ist eine Wahrscheinlichkeit
+* $P(x)$ ist eine Wahrscheinlichkeit
 * Die Wahrscheinlichkeitsverteilung einer diskreten Zufallsvariable kann beschrieben werden, indem man die Punktwahrscheinlichkeiten $P(X = x)$ für alle möglichen Werte von $x$ im Wertebereich angibt.
 
 ## Stetige Verteilungen
@@ -492,9 +493,9 @@ $$P(165 < X < 175) = P(X < 175) - P(X < 165)$$
 
 Kumulative Verteilfunktionen $F(x) = P(X \le x)$ haben folgende Eigenschaften:
 
-- Es handelt sich um eine Wahrscheinlichkeit, also $0 \le F(x) \le 1$
-- Sie sind monoton wachsend: für $a < b$ gilt $F(a) \le F(b)$
-- Für die Ableitung von $F(x)$ gilt: $F\prime(x) \ge 0$
+* Es handelt sich um eine Wahrscheinlichkeit, also $0 \le F(x) \le 1$
+* Sie sind monoton wachsend: für $a < b$ gilt $F(a) \le F(b)$
+* Für die Ableitung von $F(x)$ gilt: $F\prime(x) \ge 0$
 
 ![Beispiel einer kumulativen Verteilfunktion](./img/ex_cumu.png)
 
@@ -529,8 +530,8 @@ Beispiel: $P(X \le 0.5)$:
 
 Der _Erwartungswert_ $E(x)$ und die Standardabweichung $\sigma_x$ haben bei stetigen Verteilungen die gleiche Bedeutung wie bei diskreten:
 
-- Der Erwartungswert beschreibt die mittlere Lage der Verteilung
-- Die Standardabweichung beschreibt die Streuung
+* Der Erwartungswert beschreibt die mittlere Lage der Verteilung
+* Die Standardabweichung beschreibt die Streuung
 
 Daraus ergeben sich folgen Formeln für den Erwartungswert und Varianz:
 
@@ -551,8 +552,6 @@ Das heisst, dass die Quantile die Umkehrung der kumulativen Verteilfunktion sind
 $$F(q(\alpha)) = \alpha \Leftrightarrow F^{-1}(\alpha)$$
 
 ## Wichtige stetige Verteilungen
-
-
 
 ### Uniforme Verteilung
 
@@ -576,7 +575,18 @@ $$Var(X) = \frac{(b - a)^2}{12}$$
 
 Standardabweichung:
 
-$$\sigma_X = \frac{b - a}{\sqrt{12}}
+$$\sigma_X = \frac{b - a}{\sqrt{12}}$$
 
+### Exponentialverteilung
 
-    
+Die Exponentialverteilung ist das einfachste Modell für _Wartezeiten auf Ausfälle_, also für _Lebensdauer_.
+
+Während die Poissonverteilung die _Anzahl_ Beobachtungen in einem festen Zeitintervall beschreibt, ermitteln wir mit der Exponentialverteilung die Wahrscheinlichkeit für eine Lebensdauer.
+
+Die natürliche Exponentialfunktion $e^x$ schreiben wir oft in der Form:
+
+$$exp(x) := e^x$$
+
+Eine Zufallsvariable X mit Wertebereich $W_X = \R^+ = [0,\infty)$ heisst _exponentialverteilt_ mit Parameter \lambda \in \R^+, falls
+
+$$f(x) = \lambda \cdot exp(-\lambda x), \text{falls} \ x \ge 0 (\text{sonst 0})

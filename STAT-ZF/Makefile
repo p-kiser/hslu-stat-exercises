@@ -2,5 +2,5 @@ PARAMS=-N --pdf-engine=xelatex -V documentclass=scrartcl -V papersize=a4 -V lang
 FONTS=-V mainfont="IBM Plex Serif" -V sansfont="IBM Plex Sans" -V monofont="IBM Plex Mono"
 DATE=-V date="`date +'%d.%m.%Y'`"
 
-STAT_ZF.pdf: stat.md
-	pandoc -s $(PARAMS) $(FONTS) $(DATE) stat.md -o STAT_ZF.pdf
+STAT_ZF.pdf: stat-zf.md
+	pandoc -s $(PARAMS) $(FONTS) $(DATE) stat-zf.md -o STAT_ZF.pdf
